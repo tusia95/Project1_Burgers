@@ -52,6 +52,11 @@ if(isset($_POST['email'])) {
     } else {
         echo "Информация не занесена в базу данных";
     }
+    //определить номер текущего заказа
+    $sql = "select max(order_id) from Orders group by user_id having user_id='$user_id'";
+    $result = $mysqli->query($sql);
+    $data = $result->fetch_all();
+   $order_id=$data[0][0];
 
 //запись данных о заказе в файл
     $mail_header = 'Заказ № ' . $order_id . PHP_EOL;
