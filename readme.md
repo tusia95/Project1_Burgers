@@ -1,0 +1,1 @@
+admin панель- адрес admin.php
