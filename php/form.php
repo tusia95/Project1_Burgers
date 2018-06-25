@@ -44,8 +44,8 @@ if(isset($_POST['email'])) {
         $orders_num = 1;
     }
 //вставка данных в таблицу Orders по user_id
-    $order_id = rand(1, 2000);//!!!!нужно добавить обработку ошибки при попытке вставить заказ с неуникальным id
-    $sql = "INSERT INTO Orders (user_id,address,comment,card_pay,no_callback,need_change,order_id) VALUES ('$user_id','$address','$comment','$card_pay','$no_callback','$need_change','$order_id')";
+    //$order_id = rand(1, 2000);//!!!!нужно добавить обработку ошибки при попытке вставить заказ с неуникальным id
+    $sql = "INSERT INTO Orders (user_id,address,comment,card_pay,no_callback,need_change) VALUES ('$user_id','$address','$comment','$card_pay','$no_callback','$need_change')";
     $result = $mysqli->query($sql);
     if ($result = 'true') {
         echo "Информация занесена в базу данных";
@@ -66,8 +66,6 @@ if(isset($_POST['email'])) {
     $name_dir= date("j F Y G-i-s A");
     //echo $name_dir;
     mkdir($_SERVER['DOCUMENT_ROOT'].'/php/'.$name_dir,0777);
-
-    //$dir=opendir($name_dir);
     file_put_contents($name_dir.'/order.txt', $orders_data);
 //var_dump ($result);*/
 }
